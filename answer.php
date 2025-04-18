@@ -15,6 +15,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png" />
   <link rel="manifest" href="site.webmanifest" />
+
   <title>Random number guess result, in PHP</title>
 </head>
 
@@ -28,33 +29,37 @@
       </div>
     </header>
     <main class="mdl-layout__content">
-      <div class="page-content">
-        <?php
-        // Check if the number was posted
-        if (isset($_POST['user-number'])) {
-          $userNumber = intval($_POST['user-number']);
-          $randomNumber = rand(1, 6);
-
-          echo "<h5>You guessed: $userNumber</h5>";
-
-          if ($userNumber === $randomNumber) {
-            echo "<p>You have guessed the <strong>correct</strong> number!</p>";
-          } else {
-            echo "<p>You guessed the <strong>wrong</strong> number.</p>";
-            echo "<p>The correct number was: <strong>$randomNumber</strong></p>";
-          }
-        } else {
-          echo "<p>No number submitted. Please go back and try again.</p>";
-        }
-        ?>
-
-        <!-- Back button -->
-        <br>
-        <a href="index.php" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-          Try Again
-        </a>
+      <div class="right-image">
+        <img src="./images/dice.gif" alt="Dice image" />
       </div>
-    </main>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <?php
+          // Check if the number was posted
+          if (isset($_POST['user-number'])) {
+            $userNumber = intval($_POST['user-number']);
+            $randomNumber = rand(1, 6);
+
+            echo "<h5>You guessed: $userNumber</h5>";
+
+            if ($userNumber === $randomNumber) {
+              echo "<p>You have guessed the <strong>correct</strong> number!</p>";
+            } else {
+              echo "<p>You guessed the <strong>wrong</strong> number.</p>";
+              echo "<p>The correct number was: <strong>$randomNumber</strong></p>";
+            }
+          } else {
+            echo "<p>No number submitted. Please go back and try again.</p>";
+          }
+          ?>
+
+          <!-- Back button -->
+          <br>
+          <a href="index.php" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Try Again
+          </a>
+        </div>
+      </main>
   </div>
 </body>
 
