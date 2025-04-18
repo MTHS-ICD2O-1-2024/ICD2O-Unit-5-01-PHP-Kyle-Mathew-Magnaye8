@@ -1,9 +1,10 @@
+<!-- answer.php -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <meta name="description" content="Random number guess, in PHP" />
+  <meta name="description" content="Random number guess result, in PHP" />
   <meta name="keywords" content="mths, icd2o" />
   <meta name="author" content="Kyle Matthew" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <title>Random number guess, in PHP</title>
+  <title>Random number guess result, in PHP</title>
 </head>
 
 <body>
@@ -23,31 +24,35 @@
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">Random number guess, in PHP</span>
+        <span class="mdl-layout-title">Random Number Guess Result</span>
       </div>
     </header>
     <main class="mdl-layout__content">
-      <div class="right-image">
-        <img src="./images/dice.gif" alt="Dice image" />
-      </div>
-
       <div class="page-content">
-        <h5>Pick a number between 1 and 6.</h5>
+        <?php
+        // Check if the number was posted
+        if (isset($_POST['user-number'])) {
+          $userNumber = intval($_POST['user-number']);
+          $randomNumber = rand(1, 6);
 
-        <!-- PHP Form -->
-        <form action="answer.php" method="post">
-          <!-- Input text line -->
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="number" name="user-number" min="1" max="6" required>
-            <label class="mdl-textfield__label" for="user-number">Number...</label>
-          </div>
-          <br>
+          echo "<h5>You guessed: $userNumber</h5>";
 
-          <!-- Submit button -->
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
-            CHECK!
-          </button>
-        </form>
+          if ($userNumber === $randomNumber) {
+            echo "<p>You have guessed the <strong>correct</strong> number!</p>";
+          } else {
+            echo "<p>You guessed the <strong>wrong</strong> number.</p>";
+            echo "<p>The correct number was: <strong>$randomNumber</strong></p>";
+          }
+        } else {
+          echo "<p>No number submitted. Please go back and try again.</p>";
+        }
+        ?>
+
+        <!-- Back button -->
+        <br>
+        <a href="index.php" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Try Again
+        </a>
       </div>
     </main>
   </div>
