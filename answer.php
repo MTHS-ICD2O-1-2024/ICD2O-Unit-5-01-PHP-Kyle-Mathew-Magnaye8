@@ -34,7 +34,7 @@
       </div>
       <main class="mdl-layout__content">
         <div class="page-content">
-          <?php
+          <?php  
           // Check if the number was posted
           if (isset($_POST['user-number'])) {
             $userNumber = intval($_POST['user-number']);
